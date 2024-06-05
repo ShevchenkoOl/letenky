@@ -1,23 +1,10 @@
-// import { useDispatch } from 'react-redux';
-// import { logIn } from 'redux/auth/operations';
+// import Button from '../../components/Button/Button';
+import Layout from '../../components/Layout/Layout';
 import style from './authPage.module.scss';
 
 const AuthPage = () => {
-//   const dispatch = useDispatch();
-
-//   const handleSubmit = e => {
-//     e.preventDefault();
-//     const form = e.currentTarget;
-//     dispatch(
-//       logIn({
-//         email: form.elements.email.value,
-//         password: form.elements.password.value,
-//       })
-//     );
-//     form.reset();
-//   };
-
   return (
+    <Layout>
     <form className={style.form} autoComplete="off">
       <label className={style.label}>
         Email
@@ -37,12 +24,12 @@ const AuthPage = () => {
           placeholder="Enter password"
         />
       </label>
-
+{/* <Button type="submit" text='Log in'/> */}
       <button className={style.formBtn} type="submit">
         Log In
       </button>
-      <div></div>
     </form>
+    </Layout>
   );
 };
 

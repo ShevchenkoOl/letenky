@@ -1,0 +1,52 @@
+// .container {
+//     max-width: 800px;
+//     margin: 0 auto;
+//     padding: 20px;
+//     border: 2px solid var(--background-color); /* рамка */
+//     background-color: var(--background-color); /* фон */
+//     border-radius: 10px; /* закругленные углы */
+//   }
+  
+//   .title {
+//     font-size: 2.5rem;
+//     color: var(--primary-white-color); /* цвет текста */
+//     margin-bottom: 20px;
+//     position: relative; /* добавляем позиционирование для псевдоэлемента */
+//   }
+  
+//   .title::after {
+//     content: '👋'; /* убираем знаки кавычек */
+//     position: absolute;
+//     top: 0; /* позиционируем иконку вверху */
+//     right: 0; /* позиционируем иконку справа */
+//     margin-right: 10px; /* добавляем отступ между иконкой и текстом */
+//   }
+  
+//   /* Стили для иконки приветствия */
+//   .title::before {
+//     content: '';
+//     display: block;
+//     width: 50px;
+//     height: 3px;
+//     background-color: #007bff; /* синий цвет, можно изменить на любой другой */
+//     margin-top: 10px;
+//   }
+  
+//   // styles.module.scss
+
+.header {
+    text-align: center;
+    padding: 40px 0;
+  }
+  
+  .title {
+    font-size: 3rem;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .subtitle {
+    font-size: 1.2rem;
+    color: #666;
+  }
+  

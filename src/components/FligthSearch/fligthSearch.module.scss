@@ -1,27 +1,29 @@
+.flightSearch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
 
-.flighSearch {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    max-width: 400px;
-    margin: 2rem auto;
-  }
-  
-  .flightSearch input,
-  .flightSearch button {
-    padding: 0.5rem;
-    font-size: 1rem;
-  }
-  
-  .flightSearch button {
-    cursor: pointer;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-  }
-  
-  .flightSearch button:hover {
-    background-color: #0056b3;
-  }
-  
+.flightSearch input {
+  padding: 10px;
+  margin: 0 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.flightSearch button {
+  padding: 10px 20px;
+  background-color: rgba(23, 26, 32, 0.8);
+  color: var(--primary-white-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.flightSearch button:hover,
+.flightSearch button:focus {
+  background-color: rgba(23, 26, 32, 1);
+    color: var(--hover-color);
+}

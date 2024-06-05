@@ -1,0 +1,15 @@
+.btn {
+    padding: 10px 20px;
+    background-color: rgba(23, 26, 32, 0.8);
+    color: var(--primary-white-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  .btn:hover,
+  .btn:focus {
+    background-color: rgba(23, 26, 32, 1);
+      color: var(--hover-color);
+  }

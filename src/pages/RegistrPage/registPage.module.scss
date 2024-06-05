@@ -21,7 +21,7 @@
     background-color: rgba(23, 26, 32, 0.8);
     border: none;
     border-radius: 6px;
-    color: #fff;
+    color: var(--primary-white-color);
     flex-grow: 1;
     font-family: SFProText-Regular, Helvetica, Arial, sans-serif;
     font-size: 15px;
@@ -31,11 +31,13 @@
     margin-right: 6px;
     min-width: 185px;
     padding: 0 16px 0 16px;
-    color: white;
+    color: var(--primary-white-color);
     cursor: pointer;
+    transition: color 0.3s;
   }
   
-  .formBtn:hover {
+  .formBtn:hover,
+  .formBtn:focus {
     background-color: rgba(23, 26, 32, 1);
-    cursor: pointer;
+    color: var(--hover-color);
   }

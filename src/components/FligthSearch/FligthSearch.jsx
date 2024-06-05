@@ -3,6 +3,7 @@ import { MdFlightLand, MdFlightTakeoff } from 'react-icons/md';
 import { Notify } from 'notiflix';
 
 import style from './fligthSearch.module.scss';
+// import Button from '../Button/Button';
 
 const FlightSearch = ({ onSearch }) => {
   const [from, setFrom] = useState('');
@@ -47,10 +48,10 @@ const FlightSearch = ({ onSearch }) => {
         value={date}
         onChange={(e) => setDate(e.target.value)}
       />
+      {/* <Button onClick={handleSearch} text='Search'/> */}
       <button onClick={handleSearch}>Search</button>
     </div>
   );
 };
 
 export default FlightSearch;
-
