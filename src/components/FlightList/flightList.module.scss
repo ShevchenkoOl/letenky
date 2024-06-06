@@ -1,0 +1,35 @@
+.flightListContainer {
+    display: flex;
+    justify-content: center;
+  }
+
+.flightList {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 40px;
+  }
+  
+  .flightItem {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #f9f9f9;
+  }
+  
+  .flightRoute {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .flightInfo {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .flightTime, .flightPrice {
+    font-size: 16px;
+    margin: 2px 0;
+  }
+  

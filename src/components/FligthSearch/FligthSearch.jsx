@@ -1,15 +1,18 @@
-import React, { Component } from 'react';
-import { MdFlightLand, MdFlightTakeoff } from 'react-icons/md';
-import { Notify } from 'notiflix';
-import Button from '../Button/Button';
+import React, { Component } from "react";
+import { MdFlightLand, MdFlightTakeoff } from "react-icons/md";
+import { Notify } from "notiflix";
+import Button from "../Button/Button";
+import flightData from "../../data/fligthData.json";
+import FlightList from "../FlightList/FlightList";
 
-import style from './fligthSearch.module.scss';
+import style from "./fligthSearch.module.scss";
 
 class FlightSearch extends Component {
   state = {
-    from: '',
-    to: '',
-    date: ''
+    from: "",
+    to: "",
+    date: "",
+    flights: [],
   };
 
   handleFromChange = (e) => {
@@ -27,25 +30,26 @@ class FlightSearch extends Component {
   handleSearch = () => {
     const { from, to, date } = this.state;
 
-    if (!from || !to || !date) {
-      Notify.warning('Please fill all fields.');
-      return;
-    }
-
-    const selectedDate = new Date(date);
-    const currentDate = new Date();
-
-    if (selectedDate < currentDate) {
-      Notify.failure('Please select a future date.');
+    if (!from || !to) {
+      Notify.warning("Please fill all fields.");
       return;
     }
 
     this.props.onSearch({ from, to, date });
     this.setState({
-      from: '',
-      to: '',
-      date: ''
+      from: "",
+      to: "",
+      date: "",
     });
+
+    const filteredFlights = flightData.filter(
+      (flight) =>
+        flight.from.toLowerCase() === from.toLowerCase() &&
+        flight.to.toLowerCase() === to.toLowerCase() &&
+        flight.departure.includes(date)
+    );
+
+    this.setState({ flights: filteredFlights });
   };
 
   handleSubmit = (e) => {
@@ -54,94 +58,52 @@ class FlightSearch extends Component {
   };
 
   render() {
-  
-    const { from, to, date } = this.state;
+    const { from, to, date, flights } = this.state;
 
     return (
-      <form onSubmit={this.handleSubmit} className={style.flightSearch}>
-        <MdFlightTakeoff />
-        <input
-          type="text"
-          placeholder="From"
-          value={from}
-          onChange={this.handleFromChange}
-        />
-        <MdFlightLand />
-        <input
-          type="text"
-          placeholder="To"
-          value={to}
-          onChange={this.handleToChange}
-        />
-        <input
-          type="date"
-          value={date}
-          onChange={this.handleDateChange}
-        />
-        <Button type="submit" text="Search" />
-      </form>
+      <div className={style.container}>
+        <form onSubmit={this.handleSubmit} className={style.flightSearch}>
+          <MdFlightTakeoff />
+          <input
+            type="text"
+            placeholder="From"
+            value={from}
+            onChange={this.handleFromChange}
+          />
+          <MdFlightLand />
+          <input
+            type="text"
+            placeholder="To"
+            value={to}
+            onChange={this.handleToChange}
+          />
+          <input type="date" value={date} onChange={this.handleDateChange} />
+          <Button type="submit" text="Search" />
+        </form>
+        {flights.length > 0 && (
+          <FlightList
+            flights={flights.map((flight) => ({
+              ...flight,
+              id: flight.id.toString(),
+            }))}
+          />
+        )}
+      </div>
     );
   }
 }
 
 export default FlightSearch;
 
+// if (!from || !to || !date) {
+//   Notify.warning('Please fill all fields.');
+//   return;
+// }
 
+// const selectedDate = new Date(date);
+// const currentDate = new Date();
 
-// import React, { useState } from 'react';
-// import { MdFlightLand, MdFlightTakeoff } from 'react-icons/md';
-// import { Notify } from 'notiflix';
-
-// import style from './fligthSearch.module.scss';
-// // import Button from '../Button/Button';
-
-// const FlightSearch = ({ onSearch }) => {
-//   const [from, setFrom] = useState('');
-//   const [to, setTo] = useState('');
-//   const [date, setDate] = useState('');
-
-//   const handleSearch = () => {
-//     if (!from || !to || !date) {
-//         Notify.warning('Please fill all fields.');
-//       return;
-//     }
-
-//     const selectedDate = new Date(date);
-//     const currentDate = new Date();
-    
-//     if (selectedDate < currentDate) {
-//         Notify.failure('Please select a future date.');
-//       return;
-//     }
-
-//     onSearch({ from, to, date });
-//   };
-
-//   return (
-//     <div className={style.flightSearch}>
-//       <MdFlightTakeoff />
-//       <input
-//         type="text"
-//         placeholder="From"
-//         value={from}
-//         onChange={(e) => setFrom(e.target.value)}
-//       />
-//       <MdFlightLand />
-//       <input
-//         type="text"
-//         placeholder="To"
-//         value={to}
-//         onChange={(e) => setTo(e.target.value)}
-//       />
-//       <input
-//         type="date"
-//         value={date}
-//         onChange={(e) => setDate(e.target.value)}
-//       />
-//       {/* <Button onClick={handleSearch} text='Search'/> */}
-//       <button onClick={handleSearch}>Search</button>
-//     </div>
-//   );
-// };
-
-// export default FlightSearch;
+// if (selectedDate < currentDate) {
+//   Notify.failure('Please select a future date.');
+//   return;
+// }

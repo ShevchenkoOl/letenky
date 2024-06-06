@@ -268,5 +268,35 @@
         { "id": 3, "number": "B1", "available": true },
         { "id": 4, "number": "B2", "available": true }
       ]
+    },
+    {
+      "id": 19,
+      "from": "Prague",
+      "to": "London",
+      "departure": "2023-06-11T17:00:00",
+      "arrival": "2023-06-11T19:00:00",
+      "duration": "2h",
+      "price": 150,
+      "seats": [
+        { "id": 1, "number": "A1", "available": true },
+        { "id": 2, "number": "A2", "available": true },
+        { "id": 3, "number": "B1", "available": true },
+        { "id": 4, "number": "B2", "available": true }
+      ]
+    },
+    {
+      "id": 20,
+      "from": "Prague",
+      "to": "London",
+      "departure": "2023-06-11T17:00:00",
+      "arrival": "2023-06-11T19:00:00",
+      "duration": "2h",
+      "price": 150,
+      "seats": [
+        { "id": 1, "number": "A1", "available": true },
+        { "id": 2, "number": "A2", "available": true },
+        { "id": 3, "number": "B1", "available": true },
+        { "id": 4, "number": "B2", "available": true }
+      ]
     }
   ]

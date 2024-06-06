@@ -7,20 +7,24 @@ import { Component } from "react";
 import "./style/index.scss";
 
 class App extends Component {
-state = {
-  searchFrom: '',
-  searchTo: ''
-}
+  state = {
+    searchFrom: "",
+    searchTo: "",
+    flights: [],
+  };
 
   handleSubmit = (searchFrom) => {
-    this.setState({searchFrom});
+    this.setState({ searchFrom });
   };
   render() {
-    console.log('object :>> ', this.state);
+    console.log("object :>> ", this.state);
     return (
       <>
         <Routes>
-          <Route path="/" element={<WellcomePage onSearch={this.handleSubmit}/>} />
+          <Route
+            path="/"
+            element={<WellcomePage onSearch={this.handleSubmit} />}
+          />
           <Route path="/login" element={<AuthPage />} />
           <Route path="/signup" element={<RegistPage />} />
         </Routes>
