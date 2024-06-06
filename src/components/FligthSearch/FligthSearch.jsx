@@ -14,17 +14,14 @@ class FlightSearch extends Component {
 
   handleFromChange = (e) => {
     this.setState({ from: e.target.value });
-    console.log(this.state);
   };
 
   handleToChange = (e) => {
     this.setState({ to: e.target.value });
-    console.log(this.state);
   };
 
   handleDateChange = (e) => {
     this.setState({ date: e.target.value });
-    console.log(this.state);
   };
 
   handleSearch = () => {
@@ -39,19 +36,29 @@ class FlightSearch extends Component {
     const currentDate = new Date();
 
     if (selectedDate < currentDate) {
-      console.log("Error");
       Notify.failure('Please select a future date.');
       return;
     }
 
     this.props.onSearch({ from, to, date });
+    this.setState({
+      from: '',
+      to: '',
+      date: ''
+    });
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.handleSearch();
   };
 
   render() {
+  
     const { from, to, date } = this.state;
 
     return (
-      <div className={style.flightSearch}>
+      <form onSubmit={this.handleSubmit} className={style.flightSearch}>
         <MdFlightTakeoff />
         <input
           type="text"
@@ -71,8 +78,8 @@ class FlightSearch extends Component {
           value={date}
           onChange={this.handleDateChange}
         />
-        <Button onClick={this.handleSearch} text="Search" />
-      </div>
+        <Button type="submit" text="Search" />
+      </form>
     );
   }
 }

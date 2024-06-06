@@ -3,7 +3,7 @@ import FlightSearch from "../../components/FligthSearch/FligthSearch";
 
 import style from "./wellcomePage.module.scss";
 
-const WellcomePage = () => {
+const WellcomePage = ({onSearch}) => {
   return (
     <Layout>
       <div className={style.header}>
@@ -12,7 +12,7 @@ const WellcomePage = () => {
           Find the Best Deals for Your Next Adventure
         </p>
       </div>
-      <FlightSearch />
+      <FlightSearch onSearch={onSearch}/>
     </Layout>
   );
 };
