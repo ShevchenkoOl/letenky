@@ -22,9 +22,13 @@
   color: var(--primary-white-color);
   margin-right: 20px;
   transition: color 0.3s;
+
+  &:hover,
+  &:focus {
+    color: #ff8c00;
+  }
 }
 
-.navLink:hover,
-.navLink:focus {
-  color: #ff8c00;
+.activeNavLink {
+  border-bottom: 2px solid var(--primary-white-color);
 }

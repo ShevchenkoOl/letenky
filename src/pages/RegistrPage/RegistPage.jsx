@@ -1,3 +1,4 @@
+import Button from '../../components/Button/Button';
 import Layout from '../../components/Layout/Layout';
 import style from './registPage.module.scss';
 
@@ -33,9 +34,7 @@ const RegistrPage = () => {
           placeholder="Enter password"
         />
       </label>
-      <button className={style.formBtn} type="submit">
-        Register
-      </button>
+      <Button text='Register'/>
     </form>
     </Layout>
   );

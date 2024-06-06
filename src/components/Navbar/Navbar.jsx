@@ -1,18 +1,19 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import style from "./navbar.module.scss";
 
 const Navbar = () => {
   return (
     <nav className={style.navbar}>
       <div className={style.navbarLeft}>
-        <Link to="/" className={style.navLink}>Home</Link>
+      <NavLink to="/" className={({ isActive }) => isActive ? `${style.navLink} ${style.activeNavLink}` : style.navLink}>Home</NavLink>
+
       </div>
       <div className={style.navbarRight}>
-        <Link to="/signup" className={style.navLink}>Sign up</Link>
-        <Link to="/login" className={style.navLink}>Log in</Link>
+        <NavLink to="/signup" className={({ isActive }) => isActive ? `${style.navLink} ${style.activeNavLink}` : style.navLink}>Sign up</NavLink>
+        <NavLink to="/login" className={({ isActive }) => isActive ? `${style.navLink} ${style.activeNavLink}` : style.navLink}>Log in</NavLink>
       </div>
     </nav>
   );
 }
 
-export default Navbar;
+ export default Navbar;
