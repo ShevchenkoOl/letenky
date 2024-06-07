@@ -1,10 +1,11 @@
 import { Routes, Route } from "react-router-dom";
-import WellcomePage from "./pages/WelcomePage/WellcomePage";
-import AuthPage from "./pages/AuthPage/AuthPage";
-import RegistPage from "./pages/RegistrPage/RegistPage";
-import { Component } from "react";
+import { lazy, Suspense, Component } from "react";
 
 import "./style/index.scss";
+
+const WellcomePage = lazy(() => import ("./pages/WelcomePage/WellcomePage"));
+const AuthPage = lazy(() => import ("./pages/AuthPage/AuthPage"));
+const RegistPage= lazy(() => import ("./pages/RegistrPage/RegistPage"));
 
 class App extends Component {
   state = {
@@ -20,6 +21,7 @@ class App extends Component {
     console.log("object :>> ", this.state);
     return (
       <>
+      <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route
             path="/"
@@ -28,6 +30,7 @@ class App extends Component {
           <Route path="/login" element={<AuthPage />} />
           <Route path="/signup" element={<RegistPage />} />
         </Routes>
+        </Suspense>
       </>
     );
   }
