@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import  { register }  from "./auth-operations";
+import  { login, logout, register }  from "./auth-operations";
 
 const initialState = {
   user: {},
@@ -27,6 +27,17 @@ extraReducers: (builder) => {
       .addCase(register.rejected, (state, {payload}) => {
         state.loading = false;
         state.error = payload;
+      })
+      .addCase(login.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.user = payload.user; // Сохраняем информацию о пользователе
+        state.token = payload.token;
+        state.isLogin = true;
+      })
+      .addCase(logout.fulfilled, (state) => {
+        state.user = {};
+        state.token = '';
+        state.isLogin = false;
       });
   },
 });
@@ -34,39 +45,3 @@ extraReducers: (builder) => {
 
  export default authSlice.reducer;
 
-// import { createSlice } from '@reduxjs/toolkit';
-// import register from './auth-operations';
-
-// const initialState = {
-//   user: {},
-//   token: '',
-//   isLogin: false,
-//   isLoading: false,
-//   error: null,
-// };
-
-// const authSlice = createSlice({
-//   name: 'auth',
-//   initialState,
-//   reducers: {},
-//   extraReducers: (builder) => {
-//     builder
-//       .addCase(register.pending, (state) => {
-//         state.isLoading = true;
-//         state.error = null;
-//       })
-//       .addCase(register.fulfilled, (state, action) => {
-//         state.isLoading = false;
-//         state.user = action.payload.user;
-//         state.token = action.payload.token;
-//         state.isLogin = true;
-//         console.log('User data:', action.payload.user);
-//       })
-//       .addCase(register.rejected, (state, action) => {
-//         state.isLoading = false;
-//         state.error = action.payload;
-//       });
-//   },
-// });
-
-// export default authSlice.reducer;

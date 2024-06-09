@@ -1,4 +1,3 @@
-// import { useSelector } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { getUser } from '../../../redux/auth/auth-selector';
 
@@ -8,7 +7,7 @@ const NavbarUser =  () => {
     const {name} = useSelector(getUser);
 return (
     <div className={style.navbarRight}>
-      {name}
+      Hi, {name}👋, 
       </div>
 )
 };
