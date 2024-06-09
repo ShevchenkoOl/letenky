@@ -1,7 +1,11 @@
 import { Routes, Route } from "react-router-dom";
 import { lazy, Suspense, Component } from "react";
+import { store } from "./redux/store";
+import { Provider } from "react-redux";
 
 import "./style/index.scss";
+
+
 
 const WellcomePage = lazy(() => import ("./pages/WelcomePage/WellcomePage"));
 const AuthPage = lazy(() => import ("./pages/AuthPage/AuthPage"));
@@ -21,6 +25,7 @@ class App extends Component {
     console.log("object :>> ", this.state);
     return (
       <>
+      <Provider store={store}>
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route
@@ -31,6 +36,7 @@ class App extends Component {
           <Route path="/signup" element={<RegistPage />} />
         </Routes>
         </Suspense>
+        </Provider>
       </>
     );
   }

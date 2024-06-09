@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { MdFlightLand, MdFlightTakeoff } from "react-icons/md";
 import { Notify } from "notiflix";
-import Button from "../Button/Button";
+import Button from "../../shared/Button/Button";
 import flightData from "../../data/fligthData.json";
 import FlightList from "../FlightList/FlightList";
 

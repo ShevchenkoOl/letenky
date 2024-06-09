@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import style from './flightList.module.scss';
-import Button from '../Button/Button';
+import Button from '../../shared/Button/Button';
 
 const FlightList = ({ flights }) => {
   const formatDateTime = (dateTime) => {

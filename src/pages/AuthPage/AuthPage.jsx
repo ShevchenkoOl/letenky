@@ -1,29 +1,21 @@
-import Button from "../../components/Button/Button";
+import Button from "../../shared/Button/Button";
 import Layout from "../../components/Layout/Layout";
+import useForm from "../../components/hooks/userForm";
+import TextFields from "../../shared/TextFields/TextFields";
+import initialState from '../../shared/TextFields/initialState';
+import fields from "../../shared/TextFields/fields";
+
 import style from "./authPage.module.scss";
 
-const AuthPage = () => {
+const AuthPage = ({onSubmit}) => {
+  const {state, handleChange, handleSubmit} = useForm({initialState, onSubmit});
+  const {email, password} = state;
+
   return (
     <Layout>
-      <form className={style.form} autoComplete="off">
-        <label className={style.label}>
-          Email
-          <input
-            className={style.label}
-            type="email"
-            name="email"
-            placeholder="Enter email"
-          />
-        </label>
-        <label className={style.label}>
-          Password
-          <input
-            className={style.label}
-            type="password"
-            name="password"
-            placeholder="Enter password"
-          />
-        </label>
+      <form onSubmit={handleSubmit} className={style.form}>
+      <TextFields value={email} onChange={handleChange} {...fields.email} />
+      <TextFields value={password} onChange={handleChange} {...fields.password} />
         <Button type="submit" text="Log in" />
       </form>
     </Layout>

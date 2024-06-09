@@ -1,41 +1,35 @@
-import Button from '../../components/Button/Button';
-import Layout from '../../components/Layout/Layout';
-import style from './registPage.module.scss';
+import { useDispatch } from "react-redux";
+import Button from "../../shared/Button/Button";
+import Layout from "../../components/Layout/Layout";
+import useForm from "../../components/hooks/userForm";
+import initialState from "../../shared/TextFields/initialState";
+import fields from "../../shared/TextFields/fields";
+import TextFields from "../../shared/TextFields/TextFields";
+import { register } from "../../redux/auth/auth-operations";
 
+import style from "./registPage.module.scss";
 
 const RegistrPage = () => {
+  const dispatch = useDispatch();
+
+  const { state, handleChange, handleSubmit } = useForm({
+    initialState,
+    onSubmit: (data) => dispatch(register(data)), // Функция onRegister интегрирована внутри onSubmit
+  });
+  const { name, email, password } = state;
+
   return (
     <Layout>
-    <form className={style.form} autoComplete="off">
-      <label className={style.label}>
-        Username
-        <input
-          className={style.label}
-          type="text"
-          name="name"
-          placeholder="Enter user name"
+      <form onSubmit={handleSubmit} className={style.form}>
+        <TextFields value={name} onChange={handleChange} {...fields.name} />
+        <TextFields value={email} onChange={handleChange} {...fields.email} />
+        <TextFields
+          value={password}
+          onChange={handleChange}
+          {...fields.password}
         />
-      </label>
-      <label className={style.label}>
-        Email
-        <input
-          className={style.label}
-          type="email"
-          name="email"
-          placeholder="Enter email"
-        />
-      </label>
-      <label className={style.label}>
-        Password
-        <input
-          className={style.label}
-          type="password"
-          name="password"
-          placeholder="Enter password"
-        />
-      </label>
-      <Button text='Register'/>
-    </form>
+        <Button type="submit" text="Register" />
+      </form>
     </Layout>
   );
 };
