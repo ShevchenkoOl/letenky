@@ -4,6 +4,7 @@ import { store } from "./redux/store";
 import { Provider } from "react-redux";
 import FlightDetails from "./components/FligthDetails/FligthDetails";
 import flightData from "./data/fligthData.json"
+import {Spinner} from "./components/Spinner/Spinner";
 
 import "./style/index.scss";
 
@@ -33,7 +34,7 @@ class App extends Component {
     return (
       <>
       <Provider store={store}>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Spinner />}>
       <Routes>
               <Route
                 path="/"
