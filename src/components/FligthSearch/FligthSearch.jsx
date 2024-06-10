@@ -48,7 +48,9 @@ class FlightSearch extends Component {
         flight.to.toLowerCase() === to.toLowerCase() &&
         flight.departure.includes(date)
     );
-
+    if (filteredFlights.length === 0) {
+      Notify.failure('No flights found.');
+    }
     this.setState({ flights: filteredFlights });
   };
 

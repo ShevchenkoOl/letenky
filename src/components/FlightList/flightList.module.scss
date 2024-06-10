@@ -1,35 +1,55 @@
 .flightListContainer {
-    display: flex;
-    justify-content: center;
-  }
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+}
 
 .flightList {
-    list-style-type: none;
-    padding: 0;
-    margin-bottom: 40px;
-  }
-  
-  .flightItem {
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 10px;
-    margin: 10px 0;
-    background-color: #f9f9f9;
-  }
-  
-  .flightRoute {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  .flightInfo {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .flightTime, .flightPrice {
-    font-size: 16px;
-    margin: 2px 0;
-  }
-  
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  max-width: 800px;
+}
+
+.flightItem {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 15px;
+  margin: 10px 0;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.flightRoute {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.flightInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.flightTime, .flightPrice {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+.flightTime strong, .flightPrice strong {
+  margin-right: 5px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(title-text-color);
+  text-align: center;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}

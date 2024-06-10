@@ -1,8 +1,16 @@
+import React from 'react';
 import PropTypes from 'prop-types';
-import style from './flightList.module.scss';
 import Button from '../../shared/Button/Button';
+import { Notify } from 'notiflix';
+import { useSelector } from 'react-redux'; 
+import { isUserLogin } from '../../redux/auth/auth-selector'; 
+import { Link } from 'react-router-dom';
+
+import style from './flightList.module.scss';
 
 const FlightList = ({ flights }) => {
+  const isUserLoggedIn = useSelector(isUserLogin);
+
   const formatDateTime = (dateTime) => {
     const date = new Date(dateTime);
     const formattedDate = date.toLocaleDateString();
@@ -10,9 +18,18 @@ const FlightList = ({ flights }) => {
     return { formattedDate, formattedTime };
   };
 
+  const handleDetailsClick = (flightId) => {
+    console.log('Button clicked');
+    if (isUserLoggedIn) {
+      window.location.href = `/flight/${flightId}`;
+    } else {
+      Notify.failure('Please register or log in to see flight details.');
+    }
+  };
+
   return (
     <div className={style.flightListContainer}>
-      <h2>Available Flights</h2>
+      <h2 className={style.title}>Available Flights</h2>
       <ul className={style.flightList}>
         {flights.map(flight => {
           const { formattedDate: departureDate, formattedTime: departureTime } = formatDateTime(flight.departure);
@@ -32,7 +49,9 @@ const FlightList = ({ flights }) => {
                 <div className={style.flightPrice}>
                   <strong>Price:</strong> {flight.price}
                 </div>
-                <Button text='Details'/>
+                <Link to={`/flight/${flight.id}`}>
+                  <Button text='Details' onClick={() => handleDetailsClick(flight.id)} />
+                </Link>
               </div>
             </li>
           );
@@ -49,7 +68,7 @@ FlightList.propTypes = {
     to: PropTypes.string.isRequired,
     departure: PropTypes.string.isRequired,
     arrival: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
+    price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   })).isRequired,
 };
 

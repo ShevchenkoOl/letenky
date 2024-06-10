@@ -1,30 +1,3 @@
-// import Button from "../../shared/Button/Button";
-// import Layout from "../../components/Layout/Layout";
-// import useForm from "../../components/hooks/userForm";
-// import TextFields from "../../shared/TextFields/TextFields";
-// import initialState from '../../shared/TextFields/initialState';
-// import fields from "../../shared/TextFields/fields";
-
-// import style from "./authPage.module.scss";
-
-// const AuthPage = () => {
-//   const {state, handleChange, handleSubmit} = useForm({initialState, onSubmit});
-//   const {email, password} = state;
-
-//   return (
-//     <Layout>
-//       <form onSubmit={handleSubmit} className={style.form}>
-//       <TextFields value={email} onChange={handleChange} {...fields.email} />
-//       <TextFields value={password} onChange={handleChange} {...fields.password} />
-//         <Button type="submit" text="Log in" />
-//       </form>
-//     </Layout>
-//   );
-// };
-
-// export default AuthPage;
-
-// import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/auth/auth-operations";
 import { useState } from "react";
@@ -33,10 +6,11 @@ import Button from "../../shared/Button/Button";
 import Layout from "../../components/Layout/Layout";
 
 import style from "./authPage.module.scss";
+import { useNavigate } from "react-router-dom";
 
 const AuthPage = () => {
   const dispatch = useDispatch();
-  // const history = useHistory();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -46,9 +20,12 @@ const AuthPage = () => {
     if (name === "password") setPassword(value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(login({ email, password }));
+    const result = await dispatch(login({ email, password }));
+    if (login.fulfilled.match(result)) {
+      navigate("/");
+    }
   };
 
   return (
@@ -70,7 +47,7 @@ const AuthPage = () => {
         />
         <Button type="submit" text="Log in" />
       </form>
-      </Layout>
+    </Layout>
   );
 };
 

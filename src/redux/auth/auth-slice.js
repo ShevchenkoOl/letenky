@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAction } from "@reduxjs/toolkit";
 import  { login, logout, register }  from "./auth-operations";
 
 const initialState = {
@@ -30,7 +30,7 @@ extraReducers: (builder) => {
       })
       .addCase(login.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.user = payload.user; // Сохраняем информацию о пользователе
+        state.user = payload.user;
         state.token = payload.token;
         state.isLogin = true;
       })
@@ -41,6 +41,9 @@ extraReducers: (builder) => {
       });
   },
 });
+
+export const startLoading = createAction('auth/startLoading');
+export const stopLoading = createAction('auth/stopLoading');
 
 
  export default authSlice.reducer;

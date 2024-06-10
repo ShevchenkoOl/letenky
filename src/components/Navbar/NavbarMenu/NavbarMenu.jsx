@@ -4,16 +4,18 @@ import { isUserLogin } from "../../../redux/auth/auth-selector";
 import NavbarUser from "../NavbarUser/NavbarUser";
 import { logout } from "../../../redux/auth/auth-operations";
 import style from "./navbarMenu.module.scss";
-
+import { Notify } from "notiflix";
 
 const NavbarMenu = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isLogin = useSelector(isUserLogin);
+  
 
   const handleLogout = () => {
     dispatch(logout());
-    navigate('/');
+    Notify.success(`See you soon!`);
+    navigate("/");
   };
 
   return (
@@ -55,11 +57,8 @@ const NavbarMenu = () => {
         )}
         {isLogin && (
           <>
-          <NavbarUser />
-            <button
-              onClick={handleLogout}
-              className={style.navLink}
-            >
+            <NavbarUser />
+            <button onClick={handleLogout} className={style.navLink}>
               Log out
             </button>
           </>

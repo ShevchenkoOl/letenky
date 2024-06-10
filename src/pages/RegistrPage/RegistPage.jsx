@@ -20,7 +20,7 @@ const RegistrPage = () => {
   const onRegister = async (data) => {
     const result = await dispatch(register(data));
     if (register.fulfilled.match(result)) {
-      navigate('/'); // Перенаправляем на Home
+      navigate('/'); 
     }
   };
 
