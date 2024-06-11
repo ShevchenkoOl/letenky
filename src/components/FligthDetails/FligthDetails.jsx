@@ -4,6 +4,7 @@ import Button from "../../shared/Button/Button";
 
 import style from "./flightDetails.module.scss";
 import { NavLink } from "react-router-dom";
+import Footer from "../Footer/Footer";
 
 const FlightDetails = ({ flight }) => {
   if (!flight) {
@@ -60,6 +61,7 @@ const FlightDetails = ({ flight }) => {
           </ul>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
