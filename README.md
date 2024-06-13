@@ -4,7 +4,7 @@ This project was written using React, a separate ```flightData.json``` was taken
 
 ## How to Use the Repository
 
-1. Clone the repository: `git clone https://github.com/ShevchenkoOl/image_search.git`
+1. Clone the repository: `git clone https://github.com/ShevchenkoOl/letenky.git`
 
 2. use ```npm install``` command to install package dependencies
 
